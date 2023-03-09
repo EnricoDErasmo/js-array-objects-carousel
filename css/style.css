@@ -6,6 +6,8 @@
 /* Assets */
 
 .container{
+    position: relative;
+
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -23,6 +25,8 @@
     height: 350px;
 
     overflow: hidden; 
+
+    border: 6px solid black;
 }
 
 #img-container img{
@@ -71,6 +75,7 @@
     bottom: 70px;
     right:20px;
 
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.3em;
     font-weight: bold;
 
@@ -83,6 +88,8 @@
     right:20px;
 
     text-align: right;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7em;
 
     color: white;
 }
@@ -99,6 +106,8 @@
     height: 350px;
 
     background-color: black;
+
+    border: 3px solid black;
 }
 
 .thumbnail{
@@ -113,4 +122,30 @@
     opacity: 1;
 
     border: 3px solid white;
+}
+
+.btns-container{
+    position: absolute;
+    top: 74%;
+    left: 50%;
+
+    transform: translate(-50%, 0);
+
+    display: flex;
+    gap: 10px;
+
+    padding: 15px 50px;
+
+    background-color: black;
+
+    border-radius: 0 0 30px 30px;
+}
+
+.btn{
+    padding: 10px 13px;
+
+    border-radius: 50%;
+    border-style: none;
+
+    cursor: pointer;
 }

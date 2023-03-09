@@ -69,6 +69,11 @@ const activeImgEl = document.getElementById("carouselActiveImg");
 const carouselEl = document.getElementById("carousel");
 const thumbnailsContainerEl = document.getElementById("thumbnails-container");
 
+// Creo variabili per i bottoni
+const playBtn = document.getElementById("play-btn");
+const stopBtn = document.getElementById("stop-btn");
+const reverseBtn = document.getElementById("reverse-btn");
+
 
 
 // Creo una variabile di indice
@@ -156,32 +161,77 @@ downArrowEl.addEventListener("click", function() {
 });
 
 
-setInterval (autoPlay, 3000);
-
-function autoPlay() {
-
-    // Rimuovo la classe active dalla thumbnail attiva
-    thumbnailActive[index].classList.remove("active");
-
-    // SE la variabile index è uguale alla numero che corrisponde alla lunghezza dell'array
-    if(index == images.length - 1){
-        // l'index torna a zero mostrando la prima immagine del carosello
-        index = 0
-    // Altrimenti
-    } else {
-        // l'indice aumenta così da mostrarci l'immagine successiva ad ogni click
-        index++;
-
-    };
+// Creo un evento al click del play button
+playBtn.addEventListener("click", function(){
+    // Imposto la timing function
+    let timing = setInterval (autoPlay, 3000);
     
+    function autoPlay() {
+    
+        // Rimuovo la classe active dalla thumbnail attiva
+        thumbnailActive[index].classList.remove("active");
+    
+        // SE la variabile index è uguale alla numero che corrisponde alla lunghezza dell'array
+        if(index == images.length - 1){
+            // l'index torna a zero mostrando la prima immagine del carosello
+            index = 0
+        // Altrimenti
+        } else {
+            // l'indice aumenta così da mostrarci l'immagine successiva ad ogni click
+            index++;
+    
+        };
+        
+    
+        activeImgEl.src = images[index].image;
+        titleEl.innerHTML = images[index].title;
+        textEl.innerHTML = images[index].text;
+        // Aggiungo la classe active alla thumbnail con index +1
+        thumbnailActive[index].classList.add("active");
+    
+    };
+    // Creo un evento al click del button stop
+    stopBtn.addEventListener("click", function(){
+        // la timing function si blocca
+        clearInterval(timing);
 
-    activeImgEl.src = images[index].image;
-    titleEl.innerHTML = images[index].title;
-    textEl.innerHTML = images[index].text;
-    // Aggiungo la classe active alla thumbnail con index +1
-    thumbnailActive[index].classList.add("active");
+    });
+ 
+});
+ 
+reverseBtn.addEventListener("click", function(){
 
-};
+    let timing = setInterval (autoPlay, 3000);
+
+    function autoPlay() {
+
+        thumbnailActive[index].classList.remove("active");
+        
+        if(index == 0){
+    
+            index = images.length - 1;
+    
+        } else {
+    
+            index--;
+    
+        };
+    
+        activeImgEl.src = images[index].image;
+        titleEl.innerHTML = images[index].title;
+        textEl.innerHTML = images[index].text;
+        thumbnailActive[index].classList.add("active");
+        
+        
+    };
+
+    stopBtn.addEventListener("click", function(){
+
+        clearInterval(timing);
+
+    });
+
+});
 
 
 
