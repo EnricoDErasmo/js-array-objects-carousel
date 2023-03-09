@@ -104,6 +104,8 @@ textEl.className = "text";
 textEl.innerHTML = images[index].text;
 carouselEl.append(textEl);
 
+
+
 // Al click della freccia su
 upArrowEl.addEventListener("click", function() {
     
@@ -130,6 +132,8 @@ upArrowEl.addEventListener("click", function() {
 
 });
 
+
+
 // Al click della freccia giù
 downArrowEl.addEventListener("click", function() {
 
@@ -150,6 +154,34 @@ downArrowEl.addEventListener("click", function() {
     textEl.innerHTML = images[index].text;
     thumbnailActive[index].classList.add("active");
 });
+
+
+setInterval (autoPlay, 3000);
+
+function autoPlay() {
+
+    // Rimuovo la classe active dalla thumbnail attiva
+    thumbnailActive[index].classList.remove("active");
+
+    // SE la variabile index è uguale alla numero che corrisponde alla lunghezza dell'array
+    if(index == images.length - 1){
+        // l'index torna a zero mostrando la prima immagine del carosello
+        index = 0
+    // Altrimenti
+    } else {
+        // l'indice aumenta così da mostrarci l'immagine successiva ad ogni click
+        index++;
+
+    };
+    
+
+    activeImgEl.src = images[index].image;
+    titleEl.innerHTML = images[index].title;
+    textEl.innerHTML = images[index].text;
+    // Aggiungo la classe active alla thumbnail con index +1
+    thumbnailActive[index].classList.add("active");
+
+};
 
 
 
