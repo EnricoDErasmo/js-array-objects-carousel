@@ -39,19 +39,23 @@ const images = [
         image: 'img/01.webp',
         title: 'Marvel\'s Spiderman Miles Morale',
         text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
-    }, {
+    }, 
+    {
         image: 'img/02.webp',
         title: 'Ratchet & Clank: Rift Apart',
         text: 'Go dimension-hopping with Ratchet and Clank as they take on an evil emperor from another reality.',
-    }, {
+    }, 
+    {
         image: 'img/03.webp',
         title: 'Fortnite',
         text: "Grab all of your friends and drop into Epic Games Fortnite, a massive 100 - player face - off that combines looting, crafting, shootouts and chaos.",
-    }, {
+    }, 
+    {
         image: 'img/04.webp',
         title: 'Stray',
         text: 'Lost, injured and alone, a stray cat must untangle an ancient mystery to escape a long-forgotten city',
-    }, {
+    }, 
+    {
         image: 'img/05.webp',
         title: "Marvel's Avengers",
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
@@ -62,13 +66,71 @@ const images = [
 const upArrowEl = document.getElementById("upArrow");
 const downArrowEl = document.getElementById("downArrow");
 const activeImgEl = document.getElementById("carouselActiveImg");
+const carouselEl = document.getElementById("carousel");
+
+
+
+// Creo una variabile di indice
+let index = 0;
 
 // Faccio in modo che all'apertura della pagina web sia visualizzata la prima immagine dell'array
-activeImgEl.src = images[0].image
+activeImgEl.src = images[index].image;
+
+// Creo una variabile per utilizzare in pagina la proprietà title dellgli oggetti
+let titleEl = document.createElement("div");
+titleEl.className = "title";
+titleEl.innerHTML = images[index].title;
+carouselEl.append(titleEl);
+
+// Creo una variabile per utilizzare in pagina la proprietà text dellgli oggetti
+let textEl = document.createElement("div");
+textEl.className = "text";
+textEl.innerHTML = images[index].text;
+carouselEl.append(textEl);
+
+// Al click della freccia su
+upArrowEl.addEventListener("click", function() {
+    // SE la variabile index è uguale alla numero che corrisponde alla lunghezza dell'array
+    if(index == images.length - 1){
+        // l'index torna a zero mostrando la prima immagine del carosello
+        index = 0
+    // Altrimenti
+    } else {
+        // l'indice aumenta così da mostrarci l'immagine successiva ad ogni click
+        index++;
+
+    };
+
+    activeImgEl.src = images[index].image;
+    titleEl.innerHTML = images[index].title;
+    textEl.innerHTML = images[index].text;
+
+});
+
+// Al click della freccia giù
+downArrowEl.addEventListener("click", function() {
+
+    if(index == 0){
+
+        index = images.length - 1;
+
+    } else {
+
+        index--;
+
+    };
+
+    activeImgEl.src = images[index].image;
+    titleEl.innerHTML = images[index].title;
+    textEl.innerHTML = images[index].text;
+});
 
 
 
-// console.log(images[0].image);
+
+
+
+
 
 
 
