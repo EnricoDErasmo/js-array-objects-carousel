@@ -121,7 +121,7 @@ upArrowEl.addEventListener("click", function() {
 
     };
     
-    
+
     activeImgEl.src = images[index].image;
     titleEl.innerHTML = images[index].title;
     textEl.innerHTML = images[index].text;
