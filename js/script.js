@@ -67,6 +67,7 @@ const upArrowEl = document.getElementById("upArrow");
 const downArrowEl = document.getElementById("downArrow");
 const activeImgEl = document.getElementById("carouselActiveImg");
 const carouselEl = document.getElementById("carousel");
+const thumbnailsContainerEl = document.getElementById("thumbnails-container");
 
 
 
@@ -75,6 +76,21 @@ let index = 0;
 
 // Faccio in modo che all'apertura della pagina web sia visualizzata la prima immagine dell'array
 activeImgEl.src = images[index].image;
+
+// Creo un ciclo per inserire le thumbnails
+for ( i = 0; i < images.length; i++) {
+    
+    let thumbnailEl = document.createElement("img");
+
+    thumbnailEl.src = images[i].image;
+
+    thumbnailEl.className = "thumbnail";
+    
+    thumbnailsContainerEl.append(thumbnailEl);
+};
+
+let thumbnailActive = document.querySelectorAll(".thumbnail");
+thumbnailActive[index].classList.add("active");
 
 // Creo una variabile per utilizzare in pagina la proprietà title dellgli oggetti
 let titleEl = document.createElement("div");
@@ -90,6 +106,10 @@ carouselEl.append(textEl);
 
 // Al click della freccia su
 upArrowEl.addEventListener("click", function() {
+    
+    // Rimuovo la classe active dalla thumbnail attiva
+    thumbnailActive[index].classList.remove("active");
+
     // SE la variabile index è uguale alla numero che corrisponde alla lunghezza dell'array
     if(index == images.length - 1){
         // l'index torna a zero mostrando la prima immagine del carosello
@@ -100,15 +120,20 @@ upArrowEl.addEventListener("click", function() {
         index++;
 
     };
-
+    
+    
     activeImgEl.src = images[index].image;
     titleEl.innerHTML = images[index].title;
     textEl.innerHTML = images[index].text;
+    // Aggiungo la classe active alla thumbnail con index +1
+    thumbnailActive[index].classList.add("active");
 
 });
 
 // Al click della freccia giù
 downArrowEl.addEventListener("click", function() {
+
+    thumbnailActive[index].classList.remove("active");
 
     if(index == 0){
 
@@ -123,6 +148,7 @@ downArrowEl.addEventListener("click", function() {
     activeImgEl.src = images[index].image;
     titleEl.innerHTML = images[index].title;
     textEl.innerHTML = images[index].text;
+    thumbnailActive[index].classList.add("active");
 });
 
 
