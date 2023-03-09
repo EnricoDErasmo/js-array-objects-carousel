@@ -58,6 +58,18 @@ const images = [
     }
 ];
 
+// Creo variabili per bersagliare elementi html
+const upArrowEl = document.getElementById("upArrow");
+const downArrowEl = document.getElementById("downArrow");
+const activeImgEl = document.getElementById("carouselActiveImg");
+
+// Faccio in modo che all'apertura della pagina web sia visualizzata la prima immagine dell'array
+activeImgEl.src = images[0].image
+
+
+
+// console.log(images[0].image);
+
 
 
 
